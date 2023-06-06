@@ -8,13 +8,16 @@ if len(sys.argv) > 2:
 	print("Error: Too many arguments")
 	sys.exit()
 
-if not sys.argv[1].isdigit():
-	print("Error: Not a fucking digit")
+a = 0
+try:
+	a = int (sys.argv[1])
+except:
+	print("Error: Only ingegers please")
 	sys.exit()
 
-if int(sys.argv[1]) == 0:
+if a == 0:
 	print("This is zero")
-elif int(sys.argv[1]) % 2 == 0:
+elif a % 2 == 0:
 	print("This is even") 
 else:
 	print("This is odd")

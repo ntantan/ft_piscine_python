@@ -1,3 +1,5 @@
+import sys
+
 def text_analyzer(string):
 	if not isinstance(string, str):
 		print("This function only allows string")
@@ -20,3 +22,13 @@ def text_analyzer(string):
 	print("-", str(lower), "lower letter(s)")
 	print("-", str(ponct), "ponctuation mark(s)")
 	print("-", str(spaces), "space(s)")
+
+if len(sys.argv) <= 1:
+	print("What is the text to analyze?")
+	sys.exit()
+
+if len(sys.argv) > 2:
+	print("Error: Too many arguments")
+	sys.exit()
+
+text_analyzer(sys.argv[1])
