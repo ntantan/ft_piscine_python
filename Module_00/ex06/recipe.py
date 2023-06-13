@@ -27,9 +27,9 @@ def print_recipe(recipe):
 		print("Meal is for: ", end="")
 		print(cookbook[recipe]["meal"])
 		print("Prep time is: ", end="")
-		print(cookbook[recipe]["prep_time"], "min")
+		print(cookbook[recipe]["prep_time"], "min\n")
 	else:
-		print("Could not find this recipe of", recipe)
+		print("Could not find recipe of", recipe)
 
 def remove_recipe(recipe):
 	cookbook.pop(recipe)
@@ -45,18 +45,46 @@ def add_recipe():
 			break
 
 	meal_type = input("Enter a meal type:\n")
-	try:
-		prep_time = int (input("Enter a preparation time:\n"))
-	except:
-		print("Invalid meal time")
-		prep_time = 42
+	while True:
+		try:
+			prep_time = int (input("Enter a preparation time:\n"))
+			break
+		except:
+			print("Invalid meal time")
 
 	cookbook[recipe] = dict(ingredients = ingredients, meal = meal_type, prep_time = prep_time)
 	print_recipe(recipe)
 
 
-print_all_recipe()
-print_recipe("Sandwich")
-remove_recipe("Sandwich")
-print_all_recipe()
-add_recipe()
+print("Welcome to the Python Cookbook !")
+
+while 1:
+	print("""List of available option:
+	1: Add a recipe
+	2: Delete a recipe
+	3: Print a recipe
+	4: Print the cookbook
+	5: Quit
+	""")
+	try:
+		choice = input("Select an option:\n")
+	except:
+		break
+
+	print("")
+	if choice == "1":
+		add_recipe()
+	elif choice == "2":
+		recipe = input("Enter recipe name to remove:\n")
+		if recipe in cookbook:
+			remove_recipe(recipe)
+	elif choice  == "3":
+		recipe = input("Enter recipe name to get its details:\n")
+		print_recipe(recipe)
+	elif choice == "4":
+		print_all_recipe()
+	elif choice == "5":
+		print("Cookbook closed. Goodbye !")
+		break
+	else:
+		print("Wrong option :c")
